@@ -1,4 +1,10 @@
-<div class="users" *ngFor="let user of users" >
-  <p>ID: {{ user.id }}</p>
-  <p>Email: {{ user.email }}</p>
+<div class="users">
+  <select [(ngModel)]="idConnection" >
+    <option selected disabled >Usuários online</option>
+    <option *ngFor="let user of users" [value]="user.id">
+      {{ user.email }}
+  </option>
+  </select>
+
+  <button [routerLink]="'/send-message/' + idConnection">Enviar mensagem</button>
 </div>

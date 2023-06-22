@@ -15,19 +15,28 @@ export class HomeComponent implements OnInit {
 
   private _hubConnection!: HubConnection;
 
-  public users : User[] = new Array<User>();
+  public users!: User[];
+
+  public idConnection!: string;
 
   ngOnInit() {
     this._hubConnection = new HubConnectionBuilder().withUrl('http://localhost:5141/hub').build()
     this._hubConnection.start()
-    .then(() => {
-      this._hubConnection.invoke('ShowUsers')
-      .then((res) => {
-        this.users = res;
-        console.log(res)
-      })
-      .catch((err) => console.log('Error '+ err))
+      .then(() => {
+        this._hubConnection.invoke('ShowUsers')
+          .then((res) => {
+            this.users = res;
+          })
+          .catch((err) => console.log('Error ' + err))
       })
       .catch(err => console.log('Error while starting connection: ' + err))
+  }
+
+  sendMessage() {
+    this._hubConnection.invoke('SendMessage')
+      .then((res) => {
+        this.users = res;
+      })
+      .catch((err) => console.log('Error ' + err))
   }
 }
