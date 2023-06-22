@@ -1,0 +1,30 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #a6abc8;
+  height: 90vh;
+  width: 100%;
+}
+
+input {
+  width: 69%;
+  height: 30px;
+  font-size: 20px;
+  border-radius: 10px;
+  border: none;
+  margin: 10px;
+}
+
+a {
+  width: 70%;
+  margin-bottom: 10px;
+  text-decoration: none;
+  text-align: center;
+  background: crimson;
+  color: #FFF;
+  font-size: 20px;
+  border: none;
+  border-radius: 10px;
+}

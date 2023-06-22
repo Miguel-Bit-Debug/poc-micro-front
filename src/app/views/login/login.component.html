@@ -1,0 +1,6 @@
+<div class="form">
+  <input type="email" [(ngModel)]="email" matInput maxlength="256" placeholder="Email" required>
+
+  <input type="password" matInput [(ngModel)]="password" maxlength="256" placeholder="Senha" required>
+  <a [routerLink]="['/']" (click)="login()">Login</a>
+</div>
