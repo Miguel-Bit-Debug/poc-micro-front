@@ -1,10 +1,8 @@
-<div class="users">
-  <select [(ngModel)]="idConnection" >
-    <option selected disabled >Usuários online</option>
-    <option *ngFor="let user of users" [value]="user.id">
-      {{ user.email }}
-  </option>
-  </select>
-
-  <button [routerLink]="'/send-message/' + idConnection">Enviar mensagem</button>
+<div class="users-online" *ngFor="let user of usersOnline" >
+  <div class="users-wrapper">
+    <div [routerLink]="'/send-message/' + user.id" class="user" *ngIf="idConnection != user.id">
+      <img src="http://via.placeholder.com/150">
+      <p>{{ user.username }}</p>
+    </div>
+  </div>
 </div>

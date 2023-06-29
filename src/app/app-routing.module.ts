@@ -7,7 +7,7 @@ import { SendMessageComponent } from './views/send-message/send-message.componen
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'send-message/:{idConnection}', component: SendMessageComponent },
+  { path: 'send-message/:toUser', component: SendMessageComponent },
 ];
 
 @NgModule({

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { HubConnection, HubConnectionBuilder } from '@aspnet/signalr';
 import { LoginRequest } from 'src/app/DTOs/loginRequest';
 import { LoginService } from 'src/app/services/login.service';
@@ -21,7 +22,7 @@ export class LoginComponent implements OnInit {
       .catch(err => console.log('Error while starting connection: ' + err))
   }
 
-  constructor(private _loginService: LoginService) {  }
+  constructor(private _loginService: LoginService, private router: Router) {  }
 
 
   public login() {
@@ -29,11 +30,12 @@ export class LoginComponent implements OnInit {
 
     this._loginService.login(request).subscribe((res) => {
       localStorage.setItem('auth', JSON.stringify(res.token))
-
-      this._hubConnection.invoke('GetUser', this.email)
-      .then(() => { })
+      this._hubConnection.invoke('AddUserOnline', this.email)
+      .then((res) => {
+        localStorage.setItem('idConnection', res)
+        this.router.navigate(['/']);
+      })
       .catch((err) => console.log('Error '+ err))
     })
-
   }
 }

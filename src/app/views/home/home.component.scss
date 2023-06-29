@@ -1,9 +1,39 @@
-.users {
+.users-online {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 1px solid black;
-  width: 350px;
-  height: 200px;
-  flex-wrap: wrap;
+  justify-content: end;
+  margin-right: 10px;
+}
+
+.users-wrapper {
+  width: 270px !important;
+  max-width: 270px !important;
+  margin-right: 10px;
+}
+
+.user {
+  cursor: pointer;
+  max-width: 250px !important;
+  width: 250px !important;
+  border: 1px solid #898a8b6f;
+  border-radius: 10px;
+  display: flex;
+  margin: 5px;
+}
+
+.user p {
+  max-width: 500px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 2px;
+  color: rgb(107, 195, 207);
+  font-weight: bold;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.user img {
+  margin-right: 10px;
+  border-radius: 50%;
+  width: 60px;
+  padding: 2px;
 }

@@ -1,1 +1,14 @@
-<p>send-message works!</p>
+<div class="msg">
+  <textarea [(ngModel)]="message" placeholder="Digite sua mensage:"></textarea>
+
+  <div class="messages">
+    <div *ngFor="let msg of messages">
+      <p>Você: {{ msg.text }}</p>
+    </div>
+  </div>
+
+<div class="message">
+    <button (click)="sendMessage()" class="send-message">Enviar mensagem</button>
+  </div>
+</div>
+

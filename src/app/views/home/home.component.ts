@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HubConnection, HubConnectionBuilder } from '@aspnet/signalr';
+import { Account } from 'src/app/models/account';
 
-export class User {
-  email!: string;
-  id!: string;
-}
+
 
 @Component({
   selector: 'app-home',
@@ -14,29 +12,21 @@ export class User {
 export class HomeComponent implements OnInit {
 
   private _hubConnection!: HubConnection;
-
-  public users!: User[];
-
+  public usersOnline!: Account[];
   public idConnection!: string;
 
   ngOnInit() {
     this._hubConnection = new HubConnectionBuilder().withUrl('http://localhost:5141/hub').build()
     this._hubConnection.start()
       .then(() => {
+
+        this.idConnection = localStorage.getItem('idConnection') || ""
         this._hubConnection.invoke('ShowUsers')
-          .then((res) => {
-            this.users = res;
+          .then((res: Account[]) => {
+            this.usersOnline = res;
           })
           .catch((err) => console.log('Error ' + err))
       })
       .catch(err => console.log('Error while starting connection: ' + err))
-  }
-
-  sendMessage() {
-    this._hubConnection.invoke('SendMessage')
-      .then((res) => {
-        this.users = res;
-      })
-      .catch((err) => console.log('Error ' + err))
   }
 }
