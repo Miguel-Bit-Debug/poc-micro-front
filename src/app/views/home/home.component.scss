@@ -37,3 +37,58 @@
   width: 60px;
   padding: 2px;
 }
+
+
+.msg {
+  border: 1px solid #898a8b6f;
+  width: 100%;
+  height: 90vh;
+}
+
+.msg textarea {
+  max-width: 100%;
+  width: 99%;
+  height: 30vh;
+  max-height: 30vh;
+  font-size: 30px;
+  border: 1px solid #898a8b6f;
+  margin: 3px;
+}
+
+.message {
+  border-radius: 10px;
+  display: flex;
+  justify-content: end;
+  align-items: end;
+}
+
+.messages {
+  max-width: 100%;
+  width: 99%;
+  max-height: 50vh;
+  height: 50vh;
+  margin: 5px;
+  border: 1px solid #898a8b6f;
+}
+
+.messages p {
+  font-size: 20px;
+}
+
+.send-message {
+  margin: 10px;
+  border: none;
+  background:crimson;
+  color: #FFF;
+  border-radius: 10px;
+  height: 30px;
+  width: 200px;
+  font-size: 20px;
+}
+
+.send-message:hover {
+  font-size: 21px;
+  height: 35px;
+  width: 205px;
+  transition: .5s ease-in;
+}

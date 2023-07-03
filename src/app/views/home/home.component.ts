@@ -1,8 +1,5 @@
+import { ChatService } from './../../services/chat.service';
 import { Component, OnInit } from '@angular/core';
-import { HubConnection, HubConnectionBuilder } from '@aspnet/signalr';
-import { Account } from 'src/app/models/account';
-
-
 
 @Component({
   selector: 'app-home',
@@ -11,22 +8,30 @@ import { Account } from 'src/app/models/account';
 })
 export class HomeComponent implements OnInit {
 
-  private _hubConnection!: HubConnection;
-  public usersOnline!: Account[];
   public idConnection!: string;
+  public show: boolean = false;
+  message!: string;
+
+
+  public fromUser: string = localStorage.getItem('idConnection') || "";;
+  public toUser!: string;
+  public username!: string;
+
+  constructor(public chatService: ChatService) { }
 
   ngOnInit() {
-    this._hubConnection = new HubConnectionBuilder().withUrl('http://localhost:5141/hub').build()
-    this._hubConnection.start()
-      .then(() => {
+    this.chatService.createChatConnection();
+    this.idConnection = localStorage.getItem('idConnection') || ""
+  }
 
-        this.idConnection = localStorage.getItem('idConnection') || ""
-        this._hubConnection.invoke('ShowUsers')
-          .then((res: Account[]) => {
-            this.usersOnline = res;
-          })
-          .catch((err) => console.log('Error ' + err))
-      })
-      .catch(err => console.log('Error while starting connection: ' + err))
+  public typeMessage(id: string) {
+    this.username = this.chatService.usersOnline.find(x => x.id === this.toUser)?.username || "";
+    this.toUser = id;
+    this.show = true;
+    this.chatService.createPrivateChat(this.fromUser, this.message, this.toUser);
+  }
+
+  sendMessage() {
+    this.chatService.sendMessage(this.fromUser, this.message, this.toUser)
   }
 }
